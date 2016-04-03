@@ -183,14 +183,17 @@ Plug 'itspriddle/vim-marked'
 " https://github.com/keith/tmux.vim
 Plug 'https://github.com/keith/tmux.vim'
 
-" Kafka 테마와 이 .vimrc 파일의 원본
-Plug 'Konstruktionist/vim'
-
+" Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'liquidz/vivi.vim'
 Plug 'Shougo/vimproc.vim',	{ 'do': 'make' }
 Plug 'thinca/vim-quickrun'
 Plug 'thinca/vim-ref'
+
+" C#
+Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server; xbuild' }
+
+Plug 'jakexl/jake-vim'
 
 call plug#end()
 
@@ -308,7 +311,7 @@ set wildignore+=*/tmp/*                          " Temporary directories content
 " Colors
 "
 
-colorscheme Kafka
+colorscheme MonokaiSoft
 set background=dark
 set cursorline
 
@@ -316,11 +319,12 @@ set cursorline
 " gvim
 "
 
-set guifont=Fira\ Code:h14
+set guifont=Hack:h14
 set guioptions-=T " No toolbar
 set guioptions-=r " No scrollbar right
 set guioptions-=l " No scrollbar left
 set guioptions-=b " No scrollbar bottom
+set macligatures
 
 "
 " File formats -----------------------------------------------------------------
