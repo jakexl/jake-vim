@@ -1,5 +1,6 @@
 " Vim color file
 " Converted from Textmate theme Monokai Soft using Coloration v0.4.0 (http://github.com/sickill/coloration)
+" And then modified by Jake Song
 
 set background=dark
 highlight clear
@@ -8,7 +9,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "Monokai Soft"
+let g:colors_name = "MonokaiSoft"
 
 hi Cursor ctermfg=16 ctermbg=231 cterm=NONE guifg=#1e282b guibg=#f8f8f0 gui=NONE
 hi Visual ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#353e46 gui=NONE
@@ -30,7 +31,7 @@ hi Folded ctermfg=60 ctermbg=16 cterm=NONE guifg=#696d75 guibg=#1e282b gui=NONE
 hi Normal ctermfg=145 ctermbg=16 cterm=NONE guifg=#b1bfc2 guibg=#1e282b gui=NONE
 hi Boolean ctermfg=147 ctermbg=NONE cterm=NONE guifg=#a6a9ee guibg=NONE gui=NONE
 hi Character ctermfg=147 ctermbg=NONE cterm=NONE guifg=#a6a9ee guibg=NONE gui=NONE
-hi Comment ctermfg=60 ctermbg=NONE cterm=NONE guifg=#696d75 guibg=NONE gui=NONE
+hi Comment ctermfg=60 ctermbg=NONE cterm=NONE guifg=#696d75 guibg=NONE gui=italic
 hi Conditional ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
 hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi Define ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
@@ -57,7 +58,7 @@ hi String ctermfg=221 ctermbg=NONE cterm=NONE guifg=#eeca4e guibg=NONE gui=NONE
 hi Tag ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
 hi Title ctermfg=145 ctermbg=NONE cterm=bold guifg=#b1bfc2 guibg=NONE gui=bold
 hi Todo ctermfg=60 ctermbg=NONE cterm=inverse,bold guifg=#696d75 guibg=NONE gui=inverse,bold
-hi Type ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi Type ctermfg=80 ctermbg=NONE cterm=NONE guifg=#6dcee0 guibg=NONE gui=italic
 hi Underlined ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
 hi rubyClass ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
 hi rubyFunction ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui=NONE
@@ -105,3 +106,5 @@ hi cssClassName ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui
 hi cssValueLength ctermfg=147 ctermbg=NONE cterm=NONE guifg=#a6a9ee guibg=NONE gui=NONE
 hi cssCommonAttr ctermfg=116 ctermbg=NONE cterm=NONE guifg=#7acacb guibg=NONE gui=NONE
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi csModifier ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
+hi csType ctermfg=80 ctermbg=NONE cterm=NONE guifg=#6dcee0 guibg=NONE gui=italic
