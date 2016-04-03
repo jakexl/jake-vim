@@ -467,7 +467,7 @@ augroup omnisharp_commands
     autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 
     "show type information automatically when the cursor stops moving
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+    "autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
     "The following commands are contextual, based on the current cursor position.
 
@@ -484,9 +484,11 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
     autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
     "navigate up by method/property/field
-    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+    "autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
     "navigate down by method/property/field
-    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+    "autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+
+    autocmd FileType cs OmniSharpHighlightTypes
 
 augroup END
 
@@ -494,7 +496,7 @@ augroup END
 " this setting controls how long to wait (in ms) before fetching type / symbol information.
 set updatetime=500
 " Remove 'Press Enter to continue' message when type information is longer than one line.
-set cmdheight=2
+"set cmdheight=2
 
 " Contextual code actions (requires CtrlP or unite.vim)
 nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
@@ -625,5 +627,6 @@ nmap <c-k>	<c-w>k
 nmap <c-l>	<c-w>l
 
 nmap <f12>	:OmniSharpGotoDefinition<cr>
+nnoremap <f9> :OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
 " Key-mappings End <---
 

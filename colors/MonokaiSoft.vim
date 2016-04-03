@@ -109,3 +109,4 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi csModifier ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=NONE
 hi csType ctermfg=80 ctermbg=NONE cterm=NONE guifg=#6dcee0 guibg=NONE gui=italic
 hi csClassType ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui=bold
+hi CSharpUserType ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui=NONE
