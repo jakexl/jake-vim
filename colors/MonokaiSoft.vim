@@ -110,3 +110,4 @@ hi csModifier ctermfg=205 ctermbg=NONE cterm=NONE guifg=#ee5ca5 guibg=NONE gui=N
 hi csType ctermfg=80 ctermbg=NONE cterm=NONE guifg=#6dcee0 guibg=NONE gui=italic
 hi csClassType ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui=bold
 hi CSharpUserType ctermfg=149 ctermbg=NONE cterm=NONE guifg=#a3d53e guibg=NONE gui=NONE
+hi elixirDocString ctermfg=60 ctermbg=NONE cterm=NONE guifg=#696d75 guibg=NONE gui=italic

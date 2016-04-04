@@ -183,6 +183,9 @@ Plug 'itspriddle/vim-marked'
 " https://github.com/keith/tmux.vim
 Plug 'https://github.com/keith/tmux.vim'
 
+" command-t
+"Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && /usr/bin/ruby extconf.rb && make' }
+
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'liquidz/vivi.vim'
@@ -310,6 +313,7 @@ set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
 set wildignore+=*/tmp/*                          " Temporary directories content
+set wildignore+=*.FBX,*.psd
 
 "
 " Colors
@@ -410,11 +414,21 @@ let g:UltiSnipsExpandTrigger="<tab>"
 
 let g:Gitv_OpenHorizontal=1
 
+" ctrlp
+
+let g:ctrlp_root_markers = ['*.sublime-project']
+
 " vivi
 
 let g:vivi_enable_auto_syntax_checking = 1
 " let g:vivi_enable_auto_warm_up_iex = 1
 let g:vivi_enable_omni_completion = 1
+
+augroup elixir_commands
+    autocmd!
+
+	autocmd FileType elixir set noexpandtab
+augroup END
 
 " neocomplete
 
