@@ -183,15 +183,15 @@ Plug 'itspriddle/vim-marked'
 " https://github.com/keith/tmux.vim
 Plug 'https://github.com/keith/tmux.vim'
 
-" command-t
-"Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && /usr/bin/ruby extconf.rb && make' }
+" 괄호 닫기
+Plug 'cohama/lexima.vim'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
-Plug 'liquidz/vivi.vim'
-Plug 'Shougo/vimproc.vim',	{ 'do': 'make' }
-Plug 'thinca/vim-quickrun'
-Plug 'thinca/vim-ref'
+Plug 'Shougo/vimproc.vim',     { 'do': 'make' }
+Plug 'slashmili/alchemist.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'mattreduce/vim-mix'
 
 " C#
 Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server; xbuild' }
@@ -420,11 +420,6 @@ let g:ctrlp_root_markers = ['*.sublime-project']
 
 " elixir 관련
 "
-" vivi
-
-let g:vivi_enable_auto_syntax_checking = 1
-" let g:vivi_enable_auto_warm_up_iex = 1
-let g:vivi_enable_omni_completion = 1
 
 augroup elixir_commands
     autocmd!
@@ -439,6 +434,11 @@ augroup END
 
 let g:neocomplete#enable_at_startup = 1 " RECOMMENDED
 let g:neocomplete#enable_cursor_hold_i = 1
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\.'
 "let g:neocomplete#enable_auto_select = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
