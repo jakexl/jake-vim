@@ -207,17 +207,6 @@ call plug#end()
 " Vim-Plug End -----------------------------------------------------------------
 "
 
-
-
-"
-" Reload changes to .vimrc
-"
-
-if has("autocmd")
-   autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
-
 "
 " Options
 "
@@ -334,22 +323,33 @@ set guioptions-=l " No scrollbar left
 set guioptions-=b " No scrollbar bottom
 set macligatures
 
-"
-" File formats -----------------------------------------------------------------
-"
-autocmd Filetype gitcommit setlocal spell textwidth=72
-autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+" 바뀐 파일 읽기
 
-" Make json files human readable
-autocmd BufRead,BufNewFile *.json set filetype=json
-autocmd FileType json setlocal equalprg=json_reformat
+set autoread
 
-" Objective-C: map *.h & *.m files so syntax is recognized as objc
-autocmd BufNewFile,BufRead *.m,*.h set ft=objc
+" autocmd가 두번되지 않게
 
-" markdown: map *.md files so that syntax is recognized as markdown
-autocmd Bufread,BufNewFile,BufReadPost *.md set filetype=markdown
+augroup vimrc
+	autocmd!
 
+	" .vimrc를 세이브하면 다시 읽어들임
+	autocmd bufwritepost .vimrc source $MYVIMRC
+	" 포커스를 잃으면 자동 세이브
+	autocmd FocusLost * silent! wa
+
+	autocmd Filetype gitcommit setlocal spell textwidth=72
+	autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+
+	" Make json files human readable
+	autocmd BufRead,BufNewFile *.json set filetype=json
+	autocmd FileType json setlocal equalprg=json_reformat
+
+	" Objective-C: map *.h & *.m files so syntax is recognized as objc
+	autocmd BufNewFile,BufRead *.m,*.h set ft=objc
+
+	" markdown: map *.md files so that syntax is recognized as markdown
+	autocmd Bufread,BufNewFile,BufReadPost *.md set filetype=markdown
+augroup END
 
 "
 " Plugin settings --------------------------------------------------------------
@@ -418,6 +418,8 @@ let g:Gitv_OpenHorizontal=1
 
 let g:ctrlp_root_markers = ['*.sublime-project']
 
+" elixir 관련
+"
 " vivi
 
 let g:vivi_enable_auto_syntax_checking = 1
@@ -428,6 +430,9 @@ augroup elixir_commands
     autocmd!
 
 	autocmd FileType elixir set noexpandtab
+	autocmd FileType elixir set tabstop=4
+	autocmd FileType elixir set shiftwidth=4
+	autocmd FileType elixir set softtabstop=4
 augroup END
 
 " neocomplete
@@ -538,6 +543,8 @@ nnoremap <leader>th :OmniSharpHighlightTypes<cr>
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
 set hidden
 
+let g:OmniSharp_server_config_name = 'config.json'
+
 "
 " Commands ---------------------------------------------------------------------
 "
@@ -596,7 +603,7 @@ endfunction
 let g:mapleader = "\<Space>"
 
 " Escape is hard to reach
-inoremap jk <esc>
+inoremap jj <esc>
 
 " Shortcut to rapidly toggle set list
 nmap <leader>l :set list!<CR>
