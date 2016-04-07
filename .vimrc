@@ -229,6 +229,7 @@ set nobackup                                     "       Don't write backup file
 set nowritebackup
 set noswapfile
 set cmdwinheight=20                                " Height of command window
+set colorcolumn=100
 
 "
 " Folding
