@@ -228,8 +228,9 @@ set showbreak=\ ↪︎\                               "sbr:   Show Unicode 21AA 
 set nobackup                                     "       Don't write backup files
 set nowritebackup
 set noswapfile
-set cmdwinheight=20                                " Height of command window
+set cmdwinheight=20                              " Height of command window
 set colorcolumn=100
+set scrolloff=4
 
 "
 " Folding
@@ -417,6 +418,10 @@ let g:Gitv_OpenHorizontal=1
 
 " ctrlp
 
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window = 'top,order:ttb'
+let g:ctrlp_working_path_mode = 'rwa'
 let g:ctrlp_root_markers = ['*.sublime-project']
 
 " elixir 관련
@@ -643,10 +648,14 @@ nmap <leader>b :EasyBufferToggle<CR>
 " Delete in normal mode switches off highlighting till next search...
 nmap <silent> <BS> :nohlsearch<CR>
 
-nmap <c-h>	<c-w>h
-nmap <c-j>	<c-w>j
-nmap <c-k>	<c-w>k
-nmap <c-l>	<c-w>l
+nmap <leader>h	<c-w>h
+nmap <leader>j	<c-w>j
+nmap <leader>k	<c-w>k
+nmap <leader>l	<c-w>l
+
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 nmap <f12>	:OmniSharpGotoDefinition<cr>
 nnoremap <f9> :OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
