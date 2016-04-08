@@ -199,6 +199,8 @@ Plug 'OrangeT/vim-csharp'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'ervandew/supertab'
 
+Plug 'terryma/vim-expand-region'
+
 Plug 'jakexl/jake-vim'
 
 call plug#end()
@@ -231,6 +233,8 @@ set noswapfile
 set cmdwinheight=20                              " Height of command window
 set colorcolumn=100
 set scrolloff=4
+set columns=249
+set autowriteall
 
 "
 " Folding
@@ -351,6 +355,12 @@ augroup vimrc
 
 	" markdown: map *.md files so that syntax is recognized as markdown
 	autocmd Bufread,BufNewFile,BufReadPost *.md set filetype=markdown
+
+	autocmd VimEnter * silent! nunmap <leader>hlt
+	autocmd VimEnter * silent! nunmap <leader>hp
+	autocmd VimEnter * silent! nunmap <leader>hr
+	autocmd VimEnter * silent! nunmap <leader>hs
+	autocmd VimEnter * silent! nunmap <leader>nm
 augroup END
 
 "
@@ -425,7 +435,6 @@ let g:ctrlp_working_path_mode = 'rwa'
 let g:ctrlp_root_markers = ['*.sublime-project']
 
 " elixir 관련
-"
 
 augroup elixir_commands
     autocmd!
@@ -434,6 +443,9 @@ augroup elixir_commands
 	autocmd FileType elixir set tabstop=4
 	autocmd FileType elixir set shiftwidth=4
 	autocmd FileType elixir set softtabstop=4
+	autocmd FileType elixir set makeprg=mix\ test
+	autocmd FileType elixir set errorformat=**\ (CompileError)\ %f:%l:\ %m
+	autocmd FileType elixir nmap <F9> :make<cr>
 augroup END
 
 " neocomplete
@@ -445,6 +457,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\.'
+let g:neocomplete#sources#omni#input_patterns.cs = '[^.[:digit:] *\t]\.'
 "let g:neocomplete#enable_auto_select = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -513,8 +526,9 @@ augroup omnisharp_commands
     "navigate down by method/property/field
     "autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
 
-    autocmd FileType cs OmniSharpHighlightTypes
-
+	autocmd FileType cs nmap <f12>	:OmniSharpGotoDefinition<cr>
+	autocmd FileType cs nnoremap <f9> :OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
+	autocmd FileType cs set commentstring=//\ %s
 augroup END
 
 
@@ -612,7 +626,7 @@ let g:mapleader = "\<Space>"
 inoremap jj <esc>
 
 " Shortcut to rapidly toggle set list
-nmap <leader>l :set list!<CR>
+nmap <leader>tl :set list!<CR>
 
 " open .vimrc in a new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
@@ -640,7 +654,7 @@ nnoremap <leader>gt :GundoToggle<CR>
 " cnoremap sudow w !sudo tee % >/dev/null
 
 " Testing colorscheme
-nmap <leader>hil :so $VIMRUNTIME/syntax/hitest.vim<CR>
+"nmap <leader>hil :so $VIMRUNTIME/syntax/hitest.vim<CR>
 
 " Toggle Easybuffer
 nmap <leader>b :EasyBufferToggle<CR>
@@ -648,16 +662,21 @@ nmap <leader>b :EasyBufferToggle<CR>
 " Delete in normal mode switches off highlighting till next search...
 nmap <silent> <BS> :nohlsearch<CR>
 
+" 윈도우 관련
 nmap <leader>h	<c-w>h
 nmap <leader>j	<c-w>j
 nmap <leader>k	<c-w>k
 nmap <leader>l	<c-w>l
 
+nmap <leader>wv	<c-w>v<c-w>l
+
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-nmap <f12>	:OmniSharpGotoDefinition<cr>
-nnoremap <f9> :OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
+nmap <leader>/	:Commentary<cr>
+vmap <leader>/	:Commentary<cr>
+
+nmap <leader>gs	<c-w>o:Gstatus<cr>
 " Key-mappings End <---
 
