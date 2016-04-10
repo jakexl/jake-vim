@@ -323,7 +323,7 @@ set wildignore+=*.FBX,*.psd
 "
 
 set background=dark
-colorscheme PaperColor_Jake
+colorscheme PaperColor
 set cursorline
 
 "
