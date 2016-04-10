@@ -4,4 +4,5 @@ macmenu File.Print key=<nop>
 set transparency=10
 set blur=10
 set macligatures
-set background=light
+set background=dark
+colorscheme MonokaiSoft
