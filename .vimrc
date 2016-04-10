@@ -145,6 +145,11 @@ Plug 'gerw/vim-HiLinkTrace'
 " Color schemes
 "Plug 'chriskempson/base16-vim'
 "Plug 'tomasr/molokai'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'vim-scripts/summerfruit256.vim'
+"Plug 'GGalizzi/cake-vim'
+"Plug 'mkarmona/colorsbox'
+Plug 'NLKNguyen/papercolor-theme'
 
 " status/tabline for vim that's light as air
 " https://github.com/bling/vim-airline
@@ -317,8 +322,8 @@ set wildignore+=*.FBX,*.psd
 " Colors
 "
 
-colorscheme MonokaiSoft
 set background=dark
+colorscheme PaperColor
 set cursorline
 
 "
@@ -330,7 +335,7 @@ set guioptions-=T " No toolbar
 set guioptions-=r " No scrollbar right
 set guioptions-=l " No scrollbar left
 set guioptions-=b " No scrollbar bottom
-set macligatures
+set guioptions-=L
 
 " 바뀐 파일 읽기
 
@@ -563,7 +568,7 @@ let g:Gitv_OpenHorizontal=1
 
 " ctrlp
 
-let g:ctrlp_map = '<leader>p'
+let g:ctrlp_map = '<d-p>'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_working_path_mode = 'rwa'
@@ -764,7 +769,7 @@ inoremap jj <esc>
 nmap <leader>tl :set list!<CR>
 
 " open .vimrc in a new tab
-nmap <leader>v :tabedit $MYVIMRC<CR>
+nmap <leader>v :edit $MYVIMRC<CR>
 
 " Toggle wrap
 nmap <leader>w :set invwrap<CR>:set wrap?<CR>
@@ -804,6 +809,7 @@ nmap <leader>k	<c-w>k
 nmap <leader>l	<c-w>l
 
 nmap <leader>wv	<c-w>v<c-w>l
+nmap <leader>wo	<c-w>o
 
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -813,5 +819,7 @@ nmap <leader>/	:Commentary<cr>
 vmap <leader>/	:Commentary<cr>
 
 nmap <leader>gs	<c-w>o:Gstatus<cr>
+
+nmap <leader>p :CtrlPLastMode<cr>
 " Key-mappings End <---
 
