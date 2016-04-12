@@ -209,6 +209,8 @@ Plug 'ervandew/supertab'
 
 Plug 'terryma/vim-expand-region'
 
+Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && /usr/bin/ruby extconf.rb && make' }
+
 Plug 'jakexl/jake-vim'
 
 call plug#end()
@@ -316,7 +318,7 @@ set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
 set wildignore+=*/tmp/*                          " Temporary directories content
-set wildignore+=*.FBX,*.psd
+set wildignore+=*.FBX,*.psd,*.max,*.meta,*.r16,*.aiff	 " binary files
 
 "
 " Colors
@@ -568,7 +570,7 @@ let g:Gitv_OpenHorizontal=1
 
 " ctrlp
 
-let g:ctrlp_map = '<d-p>'
+"let g:ctrlp_map = '<d-p>'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_working_path_mode = 'rwa'
@@ -666,8 +668,9 @@ augroup omnisharp_commands
     "navigate down by method/property/field
     "autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
 
-	autocmd FileType cs nmap <f12>	:OmniSharpGotoDefinition<cr>
-	autocmd FileType cs nnoremap <f9> :OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
+	autocmd FileType cs nmap <f12>		:OmniSharpGotoDefinition<cr>
+	autocmd FileType cs nmap <s-f12>	:OmniSharpFindUsages<cr>
+	autocmd FileType cs nnoremap <f9>	:OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
 	autocmd FileType cs set commentstring=//\ %s
 augroup END
 
@@ -817,9 +820,12 @@ nnoremap <silent> p p`]
 
 nmap <leader>/	:Commentary<cr>
 vmap <leader>/	:Commentary<cr>
+nmap <D-/>	:Commentary<cr>
+vmap <D-/>	:Commentary<cr>
 
 nmap <leader>gs	<c-w>o:Gstatus<cr>
 
-nmap <leader>p :CtrlPLastMode<cr>
+nmap <leader>p <Plug>(CommandT)
+map <D-p> <Plug>(CommandT)
 " Key-mappings End <---
 
