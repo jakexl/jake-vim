@@ -800,6 +800,7 @@ nnoremap <leader>gt :GundoToggle<CR>
 "nmap <leader>hil :so $VIMRUNTIME/syntax/hitest.vim<CR>
 
 " Toggle Easybuffer
+let g:easybuffer_bufname = "expand('#'.bnr.':t').'  '.expand('#'.bnr.':p')"
 nmap <leader>b :EasyBufferToggle<CR>
 
 " Delete in normal mode switches off highlighting till next search...
@@ -827,5 +828,8 @@ nmap <leader>gs	<c-w>o:Gstatus<cr>
 
 nmap <leader>p <Plug>(CommandT)
 map <D-p> <Plug>(CommandT)
+
+" 현재 단어를 Ag로 찾는다
+nmap <D-F>	yiw:Ag <c-r>" ..
 " Key-mappings End <---
 
