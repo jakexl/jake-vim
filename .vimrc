@@ -243,7 +243,7 @@ set noswapfile
 set cmdwinheight=20                              " Height of command window
 set colorcolumn=100
 set scrolloff=4
-set columns=249
+set columns=217
 set autowriteall
 
 "
@@ -576,15 +576,19 @@ let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_working_path_mode = 'rwa'
 let g:ctrlp_root_markers = ['*.sublime-project']
 
+" CommandT
+
+let g:CommandTFileScanner = "git"
+
 " elixir 관련
 
 augroup elixir_commands
     autocmd!
 
-	autocmd FileType elixir set noexpandtab
-	autocmd FileType elixir set tabstop=4
-	autocmd FileType elixir set shiftwidth=4
-	autocmd FileType elixir set softtabstop=4
+	autocmd FileType elixir set expandtab
+	autocmd FileType elixir set tabstop=2
+	autocmd FileType elixir set shiftwidth=2
+	autocmd FileType elixir set softtabstop=2
 	autocmd FileType elixir set makeprg=mix\ test
 	autocmd FileType elixir set errorformat=**\ (CompileError)\ %f:%l:\ %m
 	autocmd FileType elixir nmap <F9> :make<cr>
@@ -670,8 +674,10 @@ augroup omnisharp_commands
 
 	autocmd FileType cs nmap <f12>		:OmniSharpGotoDefinition<cr>
 	autocmd FileType cs nmap <s-f12>	:OmniSharpFindUsages<cr>
-	autocmd FileType cs nnoremap <f9>	:OmniSharpCodeFormat<cr>:OmniSharpHighlightTypes<cr>
+	autocmd FileType cs nnoremap <f11>	:set makeprg=xbuild\ /v:q\ Unity.sln<cr>:set errorformat=%f(%l):\ %m<cr>:OmniSharpHighlightTypes<cr>
 	autocmd FileType cs set commentstring=//\ %s
+	" autocmd FileType cs set makeprg=/usr/local/bin/xbuild\ Unity/Unity.sln
+	autocmd FileType cs nnoremap <f9>	:lcd ~/work/q5/program/Unity<cr>:make<cr>
 augroup END
 
 
@@ -766,7 +772,7 @@ endfunction
 let g:mapleader = "\<Space>"
 
 " Escape is hard to reach
-inoremap jj <esc>
+inoremap fj <esc>
 
 " Shortcut to rapidly toggle set list
 nmap <leader>tl :set list!<CR>
@@ -831,5 +837,11 @@ map <D-p> <Plug>(CommandT)
 
 " 현재 단어를 Ag로 찾는다
 nmap <D-F>	yiw:Ag <c-r>" ..
+
+nmap <D-\>  <c-w>v
+nmap <D-1>  <c-w>h
+nmap <D-2>  <c-w>l
+nnoremap <D-b>  :EasyBufferToggle<cr>
+
 " Key-mappings End <---
 
