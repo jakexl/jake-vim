@@ -1,5 +1,6 @@
 " .vimrc에서는 안됨
 macmenu File.Print key=<nop>
+macm Tools.Make key=<nop>
 
 set transparency=0
 set blur=10

@@ -153,13 +153,13 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " status/tabline for vim that's light as air
 " https://github.com/bling/vim-airline
-" Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " lightline
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 
-Plug 'Shougo/neocomplete'
+"Plug 'Shougo/neocomplete'
 
 Plug 'godlygeek/tabular'
 
@@ -204,8 +204,8 @@ Plug 'mattreduce/vim-mix'
 " C#
 Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server; xbuild' }
 Plug 'OrangeT/vim-csharp'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plug 'ervandew/supertab'
 
 Plug 'terryma/vim-expand-region'
 
@@ -325,14 +325,15 @@ set wildignore+=*.FBX,*.psd,*.max,*.meta,*.r16,*.aiff	 " binary files
 "
 
 set background=dark
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme MonokaiSoft
 set cursorline
 
 "
 " gvim
 "
 
-set guifont=Fira\ Code:h14
+set guifont=Fira\ Code\ Light:h14
 set guioptions-=T " No toolbar
 set guioptions-=r " No scrollbar right
 set guioptions-=l " No scrollbar left
@@ -371,6 +372,7 @@ augroup vimrc
 	autocmd VimEnter * silent! nunmap <leader>hr
 	autocmd VimEnter * silent! nunmap <leader>hs
 	autocmd VimEnter * silent! nunmap <leader>nm
+	autocmd VimEnter * nmap <D-b> :EasyBufferToggle<cr>
 augroup END
 
 "
@@ -391,158 +393,26 @@ let g:gitgutter_sign_removed='-'
 "  Airline status bar options
 "
 
-" let g:airline_theme='bubblegum'
-" let g:airline_powerline_fonts=1
-" let g:airline_inactive_collapse=1
-" " let g:airline_left_sep=' '
-" " let g:airline_left_alt_sep='|'
-" " let g:airline_right_sep=' '
-" " let g:airline_right_alt_sep='|'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#branch#empty_message = ''
-" let g:airline#extensions#hunks#enabled = 1
-" let g:airline#extensions#hunks#non_zero_only = 1
-" let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
-" let g:airline#extensions#whitespace#enabled = 1
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#right_sep = ' '
-" let g:airline#extensions#tabline#right_alt_sep = '|'
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline#extensions#tabline#show_tab_nr = 0
-
-" lightline
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'ctrlpmark': 'CtrlPMark',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-	  \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
-
-function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ' '  " edit here for cool mark
-      let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-function! TagbarStatusFunc(current, sort, fname, ...) abort
-    let g:lightline.fname = a:fname
-  return lightline#statusline(0)
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts=1
+let g:airline_inactive_collapse=1
+" let g:airline_left_sep=' '
+" let g:airline_left_alt_sep='|'
+" let g:airline_right_sep=' '
+" let g:airline_right_alt_sep='|'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 0
 
 "
 "  silver searcher
@@ -583,7 +453,7 @@ let g:CommandTFileScanner = "git"
 " elixir 관련
 
 augroup elixir_commands
-    autocmd!
+  autocmd!
 
 	autocmd FileType elixir set expandtab
 	autocmd FileType elixir set tabstop=2
@@ -592,6 +462,7 @@ augroup elixir_commands
 	autocmd FileType elixir set makeprg=mix\ test
 	autocmd FileType elixir set errorformat=**\ (CompileError)\ %f:%l:\ %m
 	autocmd FileType elixir nmap <F9> :make<cr>
+	autocmd FileType elixir nmap <F12> :ExDef<cr>
 augroup END
 
 " neocomplete
@@ -604,7 +475,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\.'
 let g:neocomplete#sources#omni#input_patterns.cs = '[^.[:digit:] *\t]\.'
-"let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " OmniSharp
@@ -638,7 +509,7 @@ augroup omnisharp_commands
     autocmd!
 
     "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+    " autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
     " Synchronous build (blocks Vim)
     "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
@@ -674,7 +545,7 @@ augroup omnisharp_commands
 
 	autocmd FileType cs nmap <f12>		:OmniSharpGotoDefinition<cr>
 	autocmd FileType cs nmap <s-f12>	:OmniSharpFindUsages<cr>
-	autocmd FileType cs nnoremap <f11>	:set makeprg=xbuild\ /v:q\ Unity.sln<cr>:set errorformat=%f(%l):\ %m<cr>:OmniSharpHighlightTypes<cr>
+	autocmd FileType cs nnoremap <f11>	:set makeprg=xbuild\ /v:q\ Unity.sln<cr>:set errorformat=%f(%l\\,%c):\ %m<cr>:OmniSharpHighlightTypes<cr>
 	autocmd FileType cs set commentstring=//\ %s
 	" autocmd FileType cs set makeprg=/usr/local/bin/xbuild\ Unity/Unity.sln
 	autocmd FileType cs nnoremap <f9>	:lcd ~/work/q5/program/Unity<cr>:make<cr>
@@ -699,7 +570,7 @@ command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
 " Force OmniSharp to reload the solution. Useful when switching branches etc.
 nnoremap <leader>rl :OmniSharpReloadSolution<cr>
-nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+" nnoremap <leader>cf :OmniSharpCodeFormat<cr>
 " Load the current .cs file to the nearest project
 nnoremap <leader>tp :OmniSharpAddToProject<cr>
 
@@ -842,6 +713,9 @@ nmap <D-\>  <c-w>v
 nmap <D-1>  <c-w>h
 nmap <D-2>  <c-w>l
 nnoremap <D-b>  :EasyBufferToggle<cr>
+nmap <f4>       :cn<cr>
+nmap <s-f4>     :cp<cr>
+nmap <f10>      :OmniSharpCodeFormat<cr>
 
 " Key-mappings End <---
 
